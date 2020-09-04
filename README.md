@@ -1,3 +1,5 @@
+![Mr. Random Logo](/logo.png)
+
 # Mr. Random [BOT]
 Just a discord bot which gives a random thing on what you ask.
 
