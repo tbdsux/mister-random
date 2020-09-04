@@ -18,13 +18,11 @@ class MyClient(discord.Client):
 
         if message.content == "random news":
             news_title, news_url = News.get_random_news()
-            await message.channel.send("\n`Here is a news for you...`")
             await message.channel.send(news_title)
             await message.channel.send(news_url)
 
         if message.content == "random video":
             video = Youtube.get_random_vid()
-            await message.channel.send("\n`Here is a video for yah...`")
             await message.channel.send(video)
 
 
