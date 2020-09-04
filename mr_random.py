@@ -54,7 +54,7 @@ class MyClient(discord.Client):
         if message.content == "random quote":
             quote, author = Quotes.get_random_quote()
             
-            embed = discord.Embed(title='"' + quote + '"', description="- " + author)
+            embed = discord.Embed(title=author, description='"' + quote + '"')
             embed.set_thumbnail(url="http://www.quotationspage.com/tag3.gif")
             embed.set_footer(text="www.quotationspage.com")
             
