@@ -21,7 +21,7 @@ class Youtube:
     youtube_base = "https://www.youtube.com/watch?v="
 
     @staticmethod
-    def get_random_vid():
+    def get_random_vid(query):
         # Disable OAuthlib's HTTPS verification when running locally.
         # *DO NOT* leave this option enabled in production.
         os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
@@ -34,9 +34,9 @@ class Youtube:
             api_service_name, api_version, developerKey=DEVELOPER_KEY
         )
 
-        request = youtube.videos().list(chart="mostPopular", part="snippet")
+        request = youtube.search().list(maxResults=30, q=query, part="snippet")
         response = request.execute()
 
-        video = random.choice(response["items"])
+        video = random.choice(response["items"])["id"]
 
-        return Youtube.youtube_base + video["id"]
+        return Youtube.youtube_base + video["videoId"]

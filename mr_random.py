@@ -22,7 +22,15 @@ class MyClient(discord.Client):
             await message.channel.send(news_url)
 
         if message.content == "random video":
-            video = Youtube.get_random_vid()
+            embed = discord.Embed(
+                title="Mr. Random | video",
+                description="Use: `random video {query}`",
+                colour=discord.Colour.green(),
+            )
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith("random video "):
+            video = Youtube.get_random_vid(message.content.replace("random video ", ""))
             await message.channel.send(video)
 
 
