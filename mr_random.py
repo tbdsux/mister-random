@@ -4,7 +4,7 @@ import os
 load_dotenv()  # load .env file
 
 import discord
-from getter import News, Youtube, COVID19
+from getter import News, Youtube, COVID19, Quotes
 from datetime import date
 
 class MyClient(discord.Client):
@@ -50,6 +50,15 @@ class MyClient(discord.Client):
         if message.content.startswith("random video "):
             video = Youtube.get_random_vid(message.content.replace("random video ", ""))
             await message.channel.send(video)
+
+        if message.content == "random quote":
+            quote, author = Quotes.get_random_quote()
+            
+            embed = discord.Embed(title='"' + quote + '"', description="- " + author)
+            embed.set_thumbnail(url="http://www.quotationspage.com/tag3.gif")
+            embed.set_footer(text="www.quotationspage.com")
+            
+            await message.channel.send(embed=embed)
 
 
 client = MyClient()
