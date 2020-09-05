@@ -1,1 +1,1 @@
-worker: python mr_random.py
+worker: python main.py
