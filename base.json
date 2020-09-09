@@ -1,0 +1,11 @@
+{
+    _id:
+    daily: 
+    loot:
+    bal: {
+        pocket:
+        lootbox:
+        bank
+    }
+    level:
+}

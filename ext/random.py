@@ -4,12 +4,13 @@ from discord.ext import commands
 from .plug_random.youtube import Youtube
 from .plug_random.quote import Quotes
 from .plug_random.news import News
+from .plug_random.meme import Meme
 
 
 class Random(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
+        
     @commands.command()
     @commands.guild_only()
     async def ping(self, ctx):
@@ -42,6 +43,13 @@ class Random(commands.Cog):
         news_title, news_url = News.get_random_news()
         await ctx.send(news_title)
         await ctx.send(news_url)
+
+    # Get a RANDOM Meme from Reddit
+    @commands.command(name="meme")
+    @commands.guild_only()
+    async def random_meme(self, ctx):
+        meme = Meme.get_meme()
+        await ctx.send(meme)
 
     @commands.command()
     @commands.guild_only()
