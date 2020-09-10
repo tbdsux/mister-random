@@ -6,8 +6,8 @@ from selenium import webdriver
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-chrome_options.binary_location = GOOGLE_CHROME_PATH
-browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+chrome_options.binary_location = os.getenv(GOOGLE_CHROME_PATH)
+browser = webdriver.Chrome(execution_path=os.getenv(CHROMEDRIVER_PATH), chrome_options=chrome_options)
 
 
 class Gagger:
