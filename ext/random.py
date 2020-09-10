@@ -6,11 +6,16 @@ from .plug_random.quote import Quotes
 from .plug_random.news import News
 from .plug_random.meme import Meme
 
+import pymongo, os
+
+client = pymongo.MongoClient(os.getenv("MONGO_DB").replace('"', "").replace('"', ""))
 
 class Random(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
+        self.db = client["RandomCommands"]
+        self.collection = ""
+
     @commands.command()
     @commands.guild_only()
     async def ping(self, ctx):
@@ -48,8 +53,21 @@ class Random(commands.Cog):
     @commands.command(name="meme")
     @commands.guild_only()
     async def random_meme(self, ctx):
-        meme = Meme.get_meme()
+        self.collection = self.db[str(ctx.guild.id)]
+
+        meme = self.memer(ctx.guild.id)
         await ctx.send(meme)
+
+    # recursive function for the meme not to repeat itself...
+    def memer(self, server_id):
+        meme = Meme.get_meme() # get the meme
+
+        # store the meme, so that it will not be the same again
+        if self.collection.count_documents({"meme_link": meme, "server_id": server_id}) == 0:
+            self.collection.insert_one({"meme_link": meme, "server_id": server_id})
+            return meme
+        else:
+            self.memer(server_id)
 
     @commands.command()
     @commands.guild_only()
