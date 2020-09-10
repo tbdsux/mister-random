@@ -1,0 +1,40 @@
+1599746684524	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.wM8cHP2X5wx6"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1599746687706	Marionette	INFO	Listening on port 37955
+1599746687734	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1599746741779	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.CU4INuHh18v8"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1599746744977	Marionette	INFO	Listening on port 43711
+1599746745004	Marionette	WARN	TLS certificate errors will be ignored for this session
+1599746757843	Marionette	INFO	Stopped listening on port 43711
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1599746857556	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.9A6z3qwiLL07"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1599746860762	Marionette	INFO	Listening on port 34095
+1599746860776	Marionette	WARN	TLS certificate errors will be ignored for this session
+1599746894395	Marionette	INFO	Stopped listening on port 34095
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://9gag.com/s/fab0aa49/f15cf0176f141ada523d9b45cc9b57b698b39763/static/dist/es8/web/js/gag.js, line 1: NS_ERROR_NOT_INITIALIZED: 

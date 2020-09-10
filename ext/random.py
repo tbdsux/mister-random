@@ -4,9 +4,9 @@ from discord.ext import commands
 from .plug_random.youtube import Youtube
 from .plug_random.quote import Quotes
 from .plug_random.news import News
-from .plug_random.meme import Meme
+from .plug_random.meme import Meme, Gagger
 
-import pymongo, os
+import pymongo, os, random
 
 client = pymongo.MongoClient(os.getenv("MONGO_DB").replace('"', "").replace('"', ""))
 
@@ -15,6 +15,7 @@ class Random(commands.Cog):
         self.bot = bot
         self.db = client["RandomCommands"]
         self.collection = ""
+        self.meme_source = ["reddit", "9gag"]
 
     @commands.command()
     @commands.guild_only()
@@ -60,7 +61,11 @@ class Random(commands.Cog):
 
     # recursive function for the meme not to repeat itself...
     def memer(self, server_id):
-        meme = Meme.get_meme() # get the meme
+        # random select from reddit or 9GAG
+        if random.choice(self.meme_source) == "reddit":
+            meme = Meme.get_meme() # get the meme
+        else:
+            meme = Gagger.get_gag()
 
         # store the meme, so that it will not be the same again
         if self.collection.count_documents({"meme_link": meme, "server_id": server_id}) == 0:
