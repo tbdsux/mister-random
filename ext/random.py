@@ -82,7 +82,7 @@ class Random(commands.Cog):
         else:
             return await self.memer(server_id)
 
-    @tasks.loop(hour=1)  # use lower when developing
+    @tasks.loop(hours=1)  # use lower when developing
     async def auto_memer(self):
         collection = self.db["Auto_Memer"]
 
