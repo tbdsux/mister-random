@@ -61,11 +61,11 @@ class Random(commands.Cog):
     async def random_meme(self, ctx):
         self.collection = self.db[str(ctx.guild.id)]
 
-        meme = self.memer(ctx.guild.id)
+        meme = await self.memer(ctx.guild.id)
         await ctx.send(meme)
 
     # recursive function for the meme not to repeat itself...
-    def memer(self, server_id):
+    async def memer(self, server_id):
         meme = Meme.get_meme()
         # random select from reddit or 9GAG [9gag is not yet working]
         # if random.choice(self.meme_source) == "reddit":
@@ -80,9 +80,9 @@ class Random(commands.Cog):
             self.collection.insert_one({"meme_link": meme, "server_id": server_id})
             return meme
         else:
-            self.memer(server_id)
+            return await self.memer(server_id)
 
-    @tasks.loop(hours=1)  # use lower when developing
+    @tasks.loop(seconds=30)  # use lower when developing
     async def auto_memer(self):
         collection = self.db["Auto_Memer"]
 
@@ -92,9 +92,10 @@ class Random(commands.Cog):
             print(i)
             if i["auto_memer"]:
                 print("Sending a meme to " + str(i["server_id"]))
-                meme = self.memer(i["server_id"])
-                channel = self.bot.get_channel(i["channel_id"])
-                await channel.send(meme)
+                meme = await self.memer(i["server_id"])
+                if meme:
+                    channel = self.bot.get_channel(i["channel_id"])
+                    await channel.send(meme)
 
     # for setting some configuration like auto sender
     @commands.command(name="configure")
