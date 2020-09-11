@@ -4,11 +4,12 @@ from discord.ext import commands, tasks
 from .plug_random.youtube import Youtube
 from .plug_random.quote import Quotes
 from .plug_random.news import News
-from .plug_random.meme import Meme #, Gagger
+from .plug_random.meme import Meme  # , Gagger
 
 import pymongo, os, random
 
 client = pymongo.MongoClient(os.getenv("MONGO_DB").replace('"', "").replace('"', ""))
+
 
 class Random(commands.Cog):
     def __init__(self, bot):
@@ -81,7 +82,7 @@ class Random(commands.Cog):
         else:
             self.memer(server_id)
 
-    @tasks.loop(minutes=15) # use lower when developing
+    @tasks.loop(hours=1)  # use lower when developing
     async def auto_memer(self):
         collection = self.db["Auto_Memer"]
 
@@ -102,7 +103,9 @@ class Random(commands.Cog):
         if function == "automemer":
             collection = self.db["Auto_Memer"]
             if collection.count_documents({"server_id": ctx.guild.id, "auto_memer": True}) == 0:
-                collection.insert_one({"server_id": ctx.guild.id, "auto_memer": True, "channel_id": discord.utils.get(ctx.guild.channels, name=channel_name).id })
+                collection.insert_one(
+                    {"server_id": ctx.guild.id, "auto_memer": True, "channel_id": discord.utils.get(ctx.guild.channels, name=channel_name).id}
+                )
             else:
                 pass
             await ctx.send("Server has been configured.")
