@@ -88,6 +88,7 @@ class Random(commands.Cog):
         all_servers = collection.find({})
 
         for i in all_servers:
+            print(i)
             if i["auto_memer"]:
                 print("Sending a meme to " + str(i["server_id"]))
                 meme = self.memer(i["server_id"])
