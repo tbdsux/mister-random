@@ -36,13 +36,6 @@ class User(commands.Cog):
             "10": 800,
         }
 
-    # @commands.command()
-    # @commands.is_owner()
-    # async def configure(self, ctx):
-    #     self.db = client["MrRandomUsers"]
-    #     self.collection = self.db[str(ctx.guild.id)]
-    #     await ctx.send(embed=discord.Embed(title="Server Configured", description="Your server has been successfully configured. \nYou can now run `ran help` to get the available commands."))
-
     @commands.command()
     @commands.guild_only()
     async def daily(self, ctx):

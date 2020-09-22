@@ -4,7 +4,7 @@ from discord.ext import commands, tasks
 from .plug_random.youtube import Youtube
 from .plug_random.quote import Quotes
 from .plug_random.news import News
-from .plug_random.meme import Meme  # , Gagger
+from .plug_random.meme import Meme, Giphy  # , Gagger
 
 import pymongo, os, random
 
@@ -117,6 +117,12 @@ class Random(commands.Cog):
     @commands.guild_only()
     async def hi(self, ctx):
         await ctx.send(ctx.author.name)
+
+    @commands.command(name="gif")
+    @commands.guild_only()
+    async def random_gif(self, ctx):
+        gif = Giphy.get_gif()
+        await ctx.send(gif)
 
 
 def setup(bot):
