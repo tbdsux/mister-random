@@ -4,7 +4,7 @@ from discord.ext import commands, tasks
 from .plug_random.youtube import Youtube
 from .plug_random.quote import Quotes
 from .plug_random.news import News
-from .plug_random.meme import Meme, Giphy  # , Gagger
+from .plug_random.meme import Meme, Giphy, GifVif  # , Gagger
 
 import pymongo, os, random
 
@@ -59,8 +59,6 @@ class Random(commands.Cog):
     @commands.command(name="meme")
     @commands.guild_only()
     async def random_meme(self, ctx):
-        self.collection = self.db[str(ctx.guild.id)]
-
         meme = await self.memer(ctx.guild.id)
         await ctx.send(meme)
 
@@ -80,9 +78,9 @@ class Random(commands.Cog):
             self.collection.insert_one({"meme_link": meme, "server_id": server_id})
             return meme
         else:
-            return await self.memer(server_id)
+            return await self.memer(server_id) # if the meme exists, it will try to get again
 
-    @tasks.loop(hours=1)  # use lower when developing
+    @tasks.loop(hours=1, minutes=30)  # use lower when developing
     async def auto_memer(self):
         collection = self.db["Auto_Memer"]
 
@@ -96,6 +94,29 @@ class Random(commands.Cog):
                 if meme:
                     channel = self.bot.get_channel(i["channel_id"])
                     await channel.send(meme)
+
+    @commands.command(name="gif")
+    @commands.guild_only()
+    async def random_gif(self, ctx):
+        gif = await self.giffer(ctx.guild.id)
+        await ctx.send(gif)
+
+    async def giffer(self, server_id):
+        self.collection= self.db[str(server_id)]
+
+        # choose from the two gif sites
+        gif_sites = ["giphy", "gifvif"]
+        if random.choice(gif_sites) == "giphy":
+            gif = Giphy.get_gif()
+        else:
+            gif = GifVif.get_gif()
+
+        # store the gif, so that it will not be the same again
+        if self.collection.count_documents({"gif_link": gif, "server_id": server_id}) == 0:
+            self.collection.insert_one({"gif_link": gif, "server_id": server_id})
+            return gif
+        else:
+            return await self.giffer(server_id) # if the gif exists, it will try to get again
 
     # for setting some configuration like auto sender
     @commands.command(name="configure")
@@ -117,12 +138,6 @@ class Random(commands.Cog):
     @commands.guild_only()
     async def hi(self, ctx):
         await ctx.send(ctx.author.name)
-
-    @commands.command(name="gif")
-    @commands.guild_only()
-    async def random_gif(self, ctx):
-        gif = Giphy.get_gif()
-        await ctx.send(gif)
 
 
 def setup(bot):
