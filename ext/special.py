@@ -1,7 +1,10 @@
 import discord
 from discord.ext import commands
 
+# other modules required
 from .plug_special.covid19 import COVID19
+from .plug_special.shrinker import Shrinker
+
 from datetime import date
 
 class Special(commands.Cog):
@@ -27,6 +30,15 @@ class Special(commands.Cog):
         embed.set_footer(text="covid19ph-api.herokuapp.com")
 
         await ctx.send(embed=embed)
+
+    @commands.command(name="sh")
+    @commands.guild_only()
+    async def shrink_url(self, ctx, *, url_to_shrink: str):
+        resp = await Shrinker.SHRINK_URL(url_to_shrink)
+
+        # send the response
+        await ctx.send("URL: *" + url_to_shrink + "*\n" + "```" + resp + "```")
+
 
 def setup(bot):
     bot.add_cog(Special(bot))

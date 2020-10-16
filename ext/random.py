@@ -80,7 +80,7 @@ class Random(commands.Cog):
         else:
             return await self.memer(server_id) # if the meme exists, it will try to get again
 
-    @tasks.loop(hours=1, minutes=30)  # use lower when developing
+    @tasks.loop(hours=3)  # use lower when developing
     async def auto_memer(self):
         collection = self.db["Auto_Memer"]
 
